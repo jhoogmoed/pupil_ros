@@ -1,0 +1,9 @@
+<launch>
+	<node pkg="pupil_ros" name="main_run_v4" type="main_run_v4.py" output="screen" /> 
+	<node pkg="pupil_ros" name="audio_output" type="audio_output.py" /> 
+	<node pkg="pupil_ros" name="start_pupil" type="start_pupil.py" /> 
+	<node pkg="pupil_ros" type="pupil_zmq_ros_pub.py" name="Pupil_ZMQ_ROS" args="localhost 50010"/>
+	<node pkg="image_view" type="image_view" name="world" args="image:=/matcher/pupil" />
+	<node pkg="image_view" type="image_view" name="matcher_warp" args="image:=/matcher/warp" />
+
+</launch>
