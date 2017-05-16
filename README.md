@@ -1,4 +1,4 @@
-# pupil_ros_pkg
+# pupil_ros
 
 How to install
 
