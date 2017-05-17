@@ -68,7 +68,7 @@ class detection:
         elif np.allclose(color,white):
             c_det = "wit"
         else:
-            c_det = "geen idee welke kleur dit is, flikker op"
+            c_det = "Unknown"
         # print "percentage:", conf
 
         return r,g,b, c_det, conf

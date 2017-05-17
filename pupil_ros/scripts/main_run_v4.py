@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#Use the roslaunch file
 #1 - setup al subscriptions
 #2 - setup al publishers
 #3 - calibrate first image
