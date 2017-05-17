@@ -21,7 +21,7 @@ This ROS package maps user's gaze data from the [Pupil Labs eye tracker](https:/
     >source devel/setup.bash
 
     This will build six custom ROS messages: pupil, pupil_positions, gaze, gaze_positions, surface_position, accu
-6. **Print markers**
+6. **Print markers **
     Print the QR-code like trackers. They can be found inside the **markers/** folder
 
 ## Using the package
