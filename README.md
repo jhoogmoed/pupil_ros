@@ -26,6 +26,7 @@ This will build six custom ROS messages: pupil, pupil_positions, gaze, gaze_posi
 How to run
 1. Make pupil_zmq_ros_pub.py executable:
 > cd catkin_ws/src/pupil_ros/scripts
+
 > chmod +x pupil_zmq_ros_pub.py main_run_v4.py audio_output.py start_pupil.py
 2. Launch ROS package:
 > roslaunch pupil_ros pupil_ros.launch
