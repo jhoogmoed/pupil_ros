@@ -51,7 +51,7 @@ This ROS package maps user's gaze data from the [Pupil Labs eye tracker](https:/
 
     >roslaunch pupil_ros pupil_ros.launch
 
-    Pupil Capture will automatically launch.
+    Pupil Capture will launch automatically.
 
 3. **Set correct settings in Pupil Remote:**
 
