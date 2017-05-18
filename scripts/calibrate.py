@@ -9,8 +9,8 @@ class calibrate:
 	@staticmethod
 	def detect_from_stereo(img_1, img_2):
 
-		markers_1 = detect_markers(img_1)
-		markers_2 = detect_markers(img_2)
+		markers_1 = detect_markers(img_1, 200) # world
+		markers_2 = detect_markers(img_2, 127) # car
 
 		available_markers_1 = []
 		available_markers_2 = []
@@ -47,17 +47,17 @@ class calibrate:
 
 		# print 'world: %s car: %s'%(len(markers_1), len(markers_2))
 
-		return available_markers_1, available_markers_2, len(found_markers), len(markers_1), len(markers_2), marker_id
+		return available_markers_1, available_markers_2, len(found_markers), markers_1, markers_2, marker_id
 	@staticmethod
 	def find_homo(img_1, img_2):
-		available_markers_1, available_markers_2, length, l1, l2, marker_id = calibrate.detect_from_stereo(img_1, img_2)
+		available_markers_1, available_markers_2, length, m1, m2, marker_id = calibrate.detect_from_stereo(img_1, img_2)
 		if length >= 4:
 			try:
 				h, status = cv2.findHomography(np.array(available_markers_1), np.array(available_markers_2), cv2.RANSAC, 75)
-				return h, True, available_markers_1, available_markers_2, l1, l2, marker_id
+				return h, True, available_markers_1, available_markers_2, m1, m2, marker_id
 			except:
-				return False, False, available_markers_1, available_markers_2, l1, l2, marker_id
+				return False, False, available_markers_1, available_markers_2, m1, m2, marker_id
 			
 		else:
-			return False, False, available_markers_1, available_markers_2, l1, l2, marker_id
+			return False, False, available_markers_1, available_markers_2, m1, m2, marker_id
 

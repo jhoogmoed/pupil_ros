@@ -55,7 +55,12 @@ class warper:
 
 
 		#initialize ORB detector and flann matcher
-		orb = cv2.ORB()
+		orb = None
+		try:
+			orb = cv2.ORB()
+		except:
+			orb = cv2.ORB_create()
+		
 		FLANN_INDEX_LSH = 6
 		index_params= dict(algorithm = FLANN_INDEX_LSH,
 						   table_number = 6, # 12

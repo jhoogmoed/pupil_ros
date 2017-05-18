@@ -76,7 +76,7 @@ def get_marker_id(marker):
     return marker, marker_id
 
 
-def detect_markers(img):
+def detect_markers(img, threshold):
     width, height, _ = img.shape
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -108,7 +108,7 @@ def detect_markers(img):
         warped_img = cv2.warpPerspective(img, persp_transf, (warped_size, warped_size))
         warped_gray = cv2.cvtColor(warped_img, cv2.COLOR_BGR2GRAY)
         
-        _, warped_bin = cv2.threshold(warped_gray, 127, 255, cv2.THRESH_BINARY)
+        _, warped_bin = cv2.threshold(warped_gray, threshold, 255, cv2.THRESH_BINARY)
         marker = warped_bin.reshape(
             [MARKER_SIZE, int(warped_size / MARKER_SIZE), MARKER_SIZE, int(warped_size / MARKER_SIZE)]
         )
@@ -124,7 +124,7 @@ def detect_markers(img):
         try:
             cv2.imshow('warped_img', warped_img)
             cv2.imshow('marker_img', marker)
-            print(marker)
+            # print(marker)
             marker = validate_3(marker)
             marker, marker_id = get_marker_id(marker)
 

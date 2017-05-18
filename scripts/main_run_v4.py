@@ -137,10 +137,29 @@ class main_matcher:
 
 		#Only check h calibration if first time
 		if self.start is False:
-			self.h_car,self.success_car,c1,self.c2, l1, l2 ,self.marker_id = calibrate.find_homo(self.image_world,self.image_car)
+			self.h_car,self.success_car,c1,self.c2, m_world, m_car ,self.marker_id = calibrate.find_homo(self.image_world,self.image_car)
 			(self.wheight,self.wwidth,cw) = self.image_world.shape
 			(self.cheight,self.cwidth,cc) = self.image_car.shape
-			print 'Trying to find markers'
+			# print 'Trying to find markers'
+
+
+			# Highlight found markers in world camera
+			img_w = self.image_world
+			for marker in m_world:
+				marker.highlite_marker(img_w)
+
+			img_out_pupil = self.cv_bridge.cv2_to_imgmsg(img_w, 'bgr8')
+			self.matcher_pupil.publish(img_out_pupil)
+			print "World markers: %s" % len(m_world)
+
+			# Highlight found markers in car camera
+			img_c = self.image_car
+			for marker in m_car:
+				marker.highlite_marker(img_c)
+
+			img_out_ros = self.cv_bridge.cv2_to_imgmsg(img_c, 'bgr8')
+			self.matcher_warp.publish(img_out_ros)
+			print "Car markers: %s" % len(m_car)
 
 			#Make first h matrix
 			if self.success_car is True:
