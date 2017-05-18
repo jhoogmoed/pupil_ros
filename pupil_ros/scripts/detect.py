@@ -122,9 +122,9 @@ def detect_markers(img):
         # print('test')
 
         try:
-            # cv2.imshow('video_123', warped_img)
-            # cv2.imshow('232', marker)
-            # print(marker)
+            cv2.imshow('warped_img', warped_img)
+            cv2.imshow('marker_img', marker)
+            print(marker)
             marker = validate_3(marker)
             marker, marker_id = get_marker_id(marker)
 

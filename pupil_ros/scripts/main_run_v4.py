@@ -87,7 +87,7 @@ class main_matcher:
 	#Ros subscribers
 	def init_subscribers(self):
 		#Vehicle subscriptions
-		self.image_car_s = rospy.Subscriber('ueye/left/image_color', Image, self.callback_car, queue_size=2, buff_size=2**24)
+		self.image_car_s = rospy.Subscriber('ueye/left/image_rect_color', Image, self.callback_car, queue_size=2, buff_size=2**24)
 		self.image_segnet_s = rospy.Subscriber('segnet/image', Image, self.callback_segnet, queue_size=2, buff_size=2**24)
 		
 		#Pupil subscriptions
@@ -112,7 +112,7 @@ class main_matcher:
 	#Get keyboard inpu
 	def GetChar(self,Block):
 	  if Block or select.select([sys.stdin], [], [], 0) == ([sys.stdin], [], []):
-	    return sys.stdin.read(1)
+		return sys.stdin.read(1)
 
 
 
@@ -199,11 +199,14 @@ class main_matcher:
 
 			#Find color match
 			ret2, segnet_thresh = cv2.threshold(self.image_segnet,50,255,cv2.THRESH_BINARY)
-			if 0 < int(self.x2) < int(self.cwidth-21) and 0 < int(self.y2) < int(self.cheight-21):
-				r,g,b,color, conf = detection.color(segnet_thresh, self.x2, self.y2)
-				if self.color_old != color and (color is 'Car' or color is 'Person') :
-					self.matcher_object.publish(color)	
-				self.color_old = color
+			try:
+				if 0 < int(self.x2) < int(self.cwidth-30) and 0 < int(self.y2) < int(self.cheight-30):
+					r,g,b,color, conf = detection.color(segnet_thresh, self.x2, self.y2)
+					if self.color_old != color and (color is 'Car' or color is 'Person') :
+						self.matcher_object.publish(color)  
+					self.color_old = color
+			except:
+				print 'Out of range'
 			
 
 
