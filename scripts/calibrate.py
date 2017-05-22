@@ -9,7 +9,8 @@ class calibrate:
 	@staticmethod
 	def detect_from_stereo(img_1, img_2):
 
-		markers_1 = detect_markers(img_1, 200) # world
+		# markers_1 = detect_markers(img_1, 200) # world outside
+		markers_1 = detect_markers(img_1, 160) # world inside
 		markers_2 = detect_markers(img_2, 127) # car
 
 		available_markers_1 = []
