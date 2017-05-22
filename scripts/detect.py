@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #This code detects markers in an image
 import cv2
 import numpy as np

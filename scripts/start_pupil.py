@@ -1,6 +1,7 @@
 #!/usr/bin/env python
+
+#Start pupil capture
 import os
-import time
 import roslib
 roslib.load_manifest('pupil_ros')
 

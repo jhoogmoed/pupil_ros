@@ -1,16 +1,20 @@
 #!/usr/bin/env python
-#Play audio
 
+#Play audio waiting music
+
+#Imports
 import rospy
 import os
-from std_msgs.msg import Bool
 import sys
-from msgpack import loads
 import roslib
+from std_msgs.msg import Bool
+from msgpack import loads
+
 roslib.load_manifest('pupil_ros')
 
 class waiter:
     wait = None
+    #Cancel when calibrated
     def callback(self, waiting):	
         self.wait = waiting.data
         if self.wait is False: 
@@ -20,7 +24,7 @@ class waiter:
  
         
 
-
+    #Start when calibrating
     def listener(self):
         data = rospy.Subscriber('waiting', Bool, self.callback, queue_size=1)
         rospy.init_node('waiting_music', anonymous=True)

@@ -1,5 +1,5 @@
+#!/usr/bin/env python
 #Code for detecting markers in an image
-
 import cv2
 
 from numpy import mean, binary_repr, zeros

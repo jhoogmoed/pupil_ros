@@ -1,25 +1,26 @@
 #!/usr/bin/env python
-'''
-Pupil_ZMQ_ROS Publisher
-- ZMQ subscriber to receive gaze and world
-- Start ROS node to publish gaze_positions, and world image
-- Using customized ROS msg: gaze_positions, gaze, pupil, pupil_positions and surface_position
-'''
 
-#Imports
+#Pupil_ZMQ_ROS Publisher
+#ZMQ subscriber to receive gaze and world
+#Start ROS node to publish gaze_positions, and world image
+#Using customized ROS msg: gaze_positions, gaze, pupil, pupil_positions and surface_position
+
+
+#Standard imports
 import zmq
 import sys
-from msgpack import loads
 import roslib
-roslib.load_manifest('pupil_ros')
 import rospy
 import numpy as np
 import cv2
+#Specific imports
+from msgpack import loads
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
 from pupil_ros.msg import gaze_positions, gaze, pupil, pupil_positions, surface_position
 from std_msgs.msg import Header
 from geometry_msgs.msg import Point
+roslib.load_manifest('pupil_ros')
 
 #Convert the first three elements of a tuple to ROS Geometry Point Message
 def tupleToPoint(tup):
