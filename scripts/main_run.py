@@ -27,7 +27,7 @@ from std_msgs.msg import String
 from std_msgs.msg import Header
 from geometry_msgs.msg import Point
 
-#Import specifik other
+#Import specific other
 from cv_bridge import CvBridge, CvBridgeError
 from pupil_ros.msg import gaze_positions
 from pupil_ros.msg import accu
@@ -142,8 +142,8 @@ class main_matcher:
             (self.cheight,self.cwidth,cc) = self.image_car.shape
             print 'Trying to find markers'
 
-            # Highlight found markers in world camera
-            img_w = self.image_world
+            # Highlight found markers in world campupil_zmq_ros_pubera
+            img_w = self.image_world.copy()
             for marker in m_world:
                 marker.highlite_marker(img_w)
 
@@ -152,7 +152,7 @@ class main_matcher:
             print "World markers: %s" % len(m_world)
 
             # Highlight found markers in car camera
-            img_c = self.image_car
+            img_c = self.image_car.copy()
             for marker in m_car:
                 marker.highlite_marker(img_c)
 
@@ -160,7 +160,7 @@ class main_matcher:
             self.matcher_warp.publish(img_out_ros)
             print "Car markers: %s" % len(m_car)
 
-            #Make first h matrix if markers are found
+            #Make firstpupil_zmq_ros_pub h matrix if markers are found
             if self.success_car is True:
                 self.image_start = self.image_world
                 
@@ -206,7 +206,7 @@ class main_matcher:
                 m_world = mh_world*mh_car
                 self.x2 = int(m_world[0]/m_world[2]) + x_offset
                 self.y2 = int(m_world[1]/m_world[2]) + y_offset
-            except:
+            except:pupil_zmq_ros_pub
                 pass
 
             #Print gaze points
