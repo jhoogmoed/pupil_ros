@@ -78,3 +78,10 @@ This ROS package maps user's gaze data from the [Pupil Labs eye tracker](https:/
 3. Make csv file with custom BAGFILE_NAME and LOGFILE_NAME (or logfile.txt)
 
     >rostopic echo -b BAGFILE_NAME.bag -p /matcher/gaze_accu > LOGFILE_NAME.csv
+    
+    
+    
+    
+    
+## License
+This package is available under GNU and GPL3
