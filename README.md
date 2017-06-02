@@ -84,4 +84,4 @@ This ROS package maps user's gaze data from the [Pupil Labs eye tracker](https:/
     
     
 ## License
-This package is available under GNU and GPL3
+This package is available under GPL3
